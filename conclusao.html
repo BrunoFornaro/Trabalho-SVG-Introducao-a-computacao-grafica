@@ -19,8 +19,12 @@
 	</div>
 
 	<h3>Conclusões</h3>
-    
-
+    <p>Com esse trabalho foi possível por em prática o conteúdo aprendendido na primeira parte do curso de Introdução à Computação Gráfica, utilizando o SVG.</p>
+	<p>Foram utilizadas as primitivas gráficas no SVG (linha, retângulo, curva de Bézier) para produzir uma animação como resultado final. Com o JavaScript foi possível fazer a animação na imagem SVG, utilizando basicamente os movimentos rígidos aprendidos em aula.</p>
+	<p>Houve duas partes mais difíceis neste trabalho: usar o JavaScript para manipular o SVG e conseguir implementar o movimento articulado do personagem na imagem. A dificuldade em utilizar o JavaScript deu-se pela falta de experiência com a linguagem, principalmente com a interação ela e o HTML, então foi demandado mais tempo e esforço para essa etapa, porém resultando num maior aprendizado com isso. Já o movimento das pernas, por sua vez, foi difícil de calcular por conta da articulação, pois não foi nada trivial entender como esse movimento acontecia.</p>
+	<p>Foi visto ao longo do trabalho que houveram diversas ideias para resolver como implementar o movimento das pernas e, no fim, foi utilizado um método calculando o ponto dos joelhos com base nos pontos do pé e do assento do personagem, que já são conhecidos, além do tamanho e proporção fixa da perna que foram defidos. Mesmo com essa forma os cálculos e a programação em JavaScript não foram nada simples, como se pode ter ideia pelo rascunho dos cálculos que foi apresentado.</p>
+	<p>Além disso, também podemos notar que foi feita uma paleta de cores para a imagem, reforçando também esse conhecimento, que apesar da animação feita ser "minimalista", foi necessário um esforço para conseguir fazer uma paleta que harmonizasse e tivesse coerência com a imagem.</p>
+	<p>Por fim, podemos ver abaixo o resultado final, e notar os três movimentos rígidos sendo implementados: a reflexão nos eixos, para "inverter" a imagem horizontal e verticalmente (com interação nas teclas "a" e "d"); a rotação, nos pedais; e a translação, na flor no fundo. Vale observar que as pernas também realizam movimentos rígidos (rotação e translação, no caso), mas a forma que isso foi implementado não foi com as funções padrão do SVG e CSS para esses movimentos.</p>
 
 	<h3>Resultado final</h3>
     <ul>
