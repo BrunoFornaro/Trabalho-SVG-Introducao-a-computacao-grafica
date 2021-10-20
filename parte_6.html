@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset=UTF-8">
+	<!-- CSS -->
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+	<div class="botoes-paginas">
+		<a href="index.html">Parte 1</a>
+		<a href="parte_2.html">Parte 2</a>
+		<a href="parte_3.html">Parte 3</a>
+		<a href="parte_4.html">Parte 4</a>
+		<a href="parte_5.html">Parte 5</a>
+		<a href="parte_6.html">Parte 6</a>
+		<a href="parte_7.html">Parte 7</a>
+	</div>
+
+	<h3>Adicionando cores e uma paisagem</h3>
+	<p>Depois das etapas anteriores, foi possível adquirir um pouco mais de domínio utilizando o JS nas transformações. Com isso, agora foi adicionada uma flor que é transladada na imagem para dar o efeito da bicicleta estar se movimentando.</p>
+	<p>Também foi adicionado um cenário, com alguns retângulos para o céu, a grama e a pista, além um circulo para o sol no canto.</p>
+	<p>Por fim, já era hora de adicionar cores a imagem, que até então estava em preto e branco. A paleta foi difícil de ajustar, tendo em vista que era muitas cores para se distinguir, que se misturavam num desenho tão simples.</p>
+	<div>
+		<svg class="bike" id="bike" width=400 height=400>
+
+			<!-- Fundo -->
+			<rect id="ceu" x=0 y=0 width=400 height=400 />
+			<rect id="grama" x=0 y=0 width=400 height=200 />
+			<rect id="estrada" x=0 y=50 width=400 height=100 />
+			<circle id="sol" cx=0 cy=400 r=75 />
+
+
+			<!-- Florzinha -->
+			<g id="flor">
+				<line x1=100 y1=190 x2=100 y2=270 />
+				<g id="petalas">
+					<circle cx=100 cy=250 r=10 transform="rotate(0,100,270)" />
+					<circle cx=100 cy=250 r=10 transform="rotate(60,100,270)" />
+					<circle cx=100 cy=250 r=10 transform="rotate(120,100,270)" />
+					<circle cx=100 cy=250 r=10 transform="rotate(180,100,270)" />
+					<circle cx=100 cy=250 r=10 transform="rotate(240,100,270)" />
+					<circle cx=100 cy=250 r=10 transform="rotate(300,100,270)" />
+				</g>
+				<circle cx=100 cy=270 r=15 transform="rotate(300,100,270)" />
+			</g>
+
+
+			<!-- Perna 1 -->
+			<!-- Valores zero são inseridos com JavaScript -->
+			<!-- Coxa -->
+			<line id="canela_1" x1=0 y1=0 x2=0 y2=0 />
+			<!-- Canela -->
+			<line id="coxa_1" x1=140 y1=240 x2=0 y2=0 />
+
+			<!-- Pedal 1 -->
+			<g id="pedal_tras">
+				<!-- Haste -->
+				<line id="haste_1" x1=180 y1=120 x2=180 y2=160 />
+				<!-- Pedal -->
+				<line id="pedal_1" x1=170 y1=160 x2=190 y2=160 />
+			</g>
+
+			<!-- Bicicleta -->
+			<!-- Rodas -->
+			<circle cx=100 cy=120 r=50 />
+			<circle cx=300 cy=120 r=50 />
+
+			<g id="metal_bicicleta">
+				<!-- Estrado -->
+				<line x1=100 y1=120 x2=180 y2=120 />
+				<line x1=100 y1=120 x2=150 y2=210 />
+				<line x1=180 y1=120 x2=140 y2=240 />
+				<line x1=150 y1=210 x2=270 y2=210 />
+				<line x1=180 y1=120 x2=270 y2=210 />
+				<line x1=300 y1=120 x2=260 y2=240 />
+
+
+				<!-- Guidão -->
+				<line x1=300 y1=240 x2=260 y2=240 />
+				<path d="M300 240 C 325,240 325,210 300,210" />
+			</g>
+
+			<!-- Banco -->
+			<line x1=120 y1=240 x2=160 y2=240 />
+
+
+			<!-- Pedal - Eixo -->
+			<circle cx=180 cy=120 r=10 />
+
+
+			<!-- Pedal 1 -->
+			<g id="pedal_frente">
+				<!-- Haste -->
+				<line x1=180 y1=120 x2=180 y2=80 />
+				<!-- Pedal -->
+				<line id="pedal_2" x1=170 y1=80 x2=190 y2=80 />
+			</g>
+
+			<!-- Tronco -->
+			<line x1=140 y1=240 x2=300 y2=280 />
+
+			<!-- Cabeça -->
+			<circle cx=320 cy=280 r=20 />
+
+			<!-- Braços -->
+			<line x1=260 y1=270 x2=320 y2=225 />
+			<!-- Vale ser honesto que a posição da mão foi feita no olho até ficar bom-->
+
+			<!-- Perna 2 -->
+			<!-- Coxa -->
+			<line id="canela_2" x1=0 y1=0 x2=0 y2=0 />
+			<!-- Canela -->
+			<line id="coxa_2" x1=140 y1=240 x2=0 y2=0 />
+
+
+		</svg>
+	</div>
+
+	<p>Podemos ver que já que as cores terem sido ajustadas, agora foi importante reposicionar os elementos onde são desenhadas as pernas e os pedais para que fosse possível distinguir qual perna está de qual lado da bicicleta.</p>
+
+	<br>
+	<p>Esboço do desenho da flor:</p>
+	<img class="rascunhos" src="imagens/Esboço flor.jpg" alt="Esboço da flor">
+
+	<br>
+
+	<div class="botoes-paginas">
+		<a href="parte_5.html">Parte 5</a>
+		<a href="parte_7.html">Parte 7</a>
+	</div>
+
+	<script>
+
+		var bike = document.getElementById("bike");
+		var retangulo_bike = bike.getBoundingClientRect();
+
+		var pedal_tras = document.getElementById("pedal_tras");
+		var pedal_frente = document.getElementById("pedal_frente");
+		var pedal_1 = document.getElementById("pedal_1");
+		var pedal_2 = document.getElementById("pedal_2");
+		var canela_1 = document.getElementById("canela_1");
+		var coxa_1 = document.getElementById("coxa_1");
+		var canela_2 = document.getElementById("canela_2");
+		var coxa_2 = document.getElementById("coxa_2");
+
+		var flor = document.getElementById("flor");
+
+
+		var ponto_c = 0;
+		var vetor_cd = 0;
+		var vetor_bc = 0;
+		var modulo_cd = 0;
+		var modulo_bc = 0;
+		var x_pe_1 = 0;
+		var y_pe_1 = 0;
+		var ponto_d = 0;
+
+
+		var i = 0;
+
+		function rotate() {
+
+
+			pedal_tras.setAttribute("transform", "rotate(" + (i--) + ",180,120)");
+			pedal_frente.setAttribute("transform", "rotate(" + (i) + ",180,120)");
+			pedal_1.setAttribute("transform", "rotate(" + (-i) + ",180,160)");
+			pedal_2.setAttribute("transform", "rotate(" + (-i) + ",180,80)");
+			flor.setAttribute("transform", "translate(" + (((i / 2) % 600) + 400) + ",0)");
+
+
+			var retangulo = pedal_1.getBoundingClientRect();
+			var retangulo2 = bike.getBoundingClientRect();
+
+			x_pe = (Math.round(retangulo.x - Math.round(retangulo2.x) + 10));
+			y_pe = (400 + Math.round(retangulo2.y) - Math.round(retangulo.y));
+
+			ponto_d = ponto_joelho([x_pe, y_pe])
+			//document.getElementById('testes').textContent = "x: " + ((i % 600) + 400) + " y: " + 0;
+			//document.getElementById('testes2').textContent = "x: " + x_pe_1 + " y: " + y_pe_1;
+			//document.getElementById('testes2').textContent = "x: " + Math.round(window.scrollX) + " y: " + ( Math.round(window.scrollY));
+
+			canela_1.setAttribute("x1", x_pe);
+			canela_1.setAttribute("y1", y_pe);
+			canela_1.setAttribute("x2", ponto_d[0]);
+			canela_1.setAttribute("y2", ponto_d[1]);
+			coxa_1.setAttribute("x2", ponto_d[0]);
+			coxa_1.setAttribute("y2", ponto_d[1]);
+
+			var retangulo = pedal_2.getBoundingClientRect();
+
+			x_pe = (Math.round(retangulo.x - Math.round(retangulo2.x) + 10));
+			y_pe = (400 + Math.round(retangulo2.y) - Math.round(retangulo.y));
+
+			ponto_d = ponto_joelho([x_pe, y_pe])
+
+			canela_2.setAttribute("x1", x_pe);
+			canela_2.setAttribute("y1", y_pe);
+			canela_2.setAttribute("x2", ponto_d[0]);
+			canela_2.setAttribute("y2", ponto_d[1]);
+			coxa_2.setAttribute("x2", ponto_d[0]);
+			coxa_2.setAttribute("y2", ponto_d[1]);
+
+
+
+			setTimeout(rotate, 1);
+
+		}
+
+		function ponto_joelho(pe) {
+
+			ponto_c = [(140 + pe[0]) / 2, (240 + pe[1]) / 2];
+
+			vetor_bc = [(140 - pe[0]) / 2, (240 - pe[1]) / 2];
+
+			vetor_cd = [vetor_bc[1], -vetor_bc[0]];
+
+			modulo_bc = Math.pow(vetor_bc[0], 2) + Math.pow(vetor_bc[1], 2);
+
+			modulo_cd = Math.pow(8100 - modulo_bc, (1 / 2));
+
+			modulo_bc = Math.pow(modulo_bc, (1 / 2));
+
+			modulo_cd = (modulo_cd / modulo_bc)
+
+			ponto_d = [ponto_c[0] + (vetor_cd[0] * modulo_cd), ponto_c[1] + (vetor_cd[1] * modulo_cd)];
+
+			return ponto_d;
+		}
+
+
+		rotate();
+
+	</script>
+
+</body>
+
+
+</html>

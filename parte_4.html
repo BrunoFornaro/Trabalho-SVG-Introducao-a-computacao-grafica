@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset=UTF-8">
+	<!-- CSS -->
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+	<div class="botoes-paginas">
+		<a href="index.html">Parte 1</a>
+		<a href="parte_2.html">Parte 2</a>
+		<a href="parte_3.html">Parte 3</a>
+		<a href="parte_4.html">Parte 4</a>
+		<a href="parte_5.html">Parte 5</a>
+		<a href="parte_6.html">Parte 6</a>
+		<a href="parte_7.html">Parte 7</a>
+	</div>
+
+	<h3>Movimento das pernas</h3>
+
+	<p>Agora vem a parte mais difícil: fazer o movimento das pernas com a articulação do joelho sem que o tamanho e a proporção das pernas se altere, e o "pé" acompanhe o pedal.</p>
+	<p>Esse foi um problema nada trivial de solucionar. Após a etapa anterior, o instinto levava a primeiro tentar calcular o quando cada parte da perna teria que rotacionar e para qual sentido, conforme o tempo passasse. Mas essa não se mostrou uma boa solução.</p>
+	<p>Como lidar com os ângulos no movimento da perna não pareceu muito razoável, por conta da forma que o movimento acontece, a solução encontrada foi calcular o ponto do joelho de cada perna. Para isso, foi estabelecido o tamanho da perna e que do joelho ao pé teria 50% do tamanho total (o tamanho da perna teria que ser maior ou igual a maior distãncia entre o centro do banco e as posições que o pé vai passar).</p>
+	<p>Com isso, começamos pegando o ponto que o pé deve estar a cada atualização da imagem, com o JS. Depois, calculamos o ponto médio entre o centro do banco e o pé, criamos um vetor perpendicular a reta que passa pelo centro do banco e o pé, ajustamos o tamanho desse vetor para que o triângulo retângulo com ponto no ponto médio calculado, no joelho e no pé tenham hipotenusa com tamanho fixo (que será o tamanho do joelho ao pé). Por fim, somamo esse vetor ao ponto médio, para obter o ponto do joelho.</p>
+	<p>Isso foi feito na forma de uma função, já que para cada perna é necessário calcular o ponto para o respectivo joelho.</p>
+	<p>Dessa forma, conseguimos o movimento das pernas:</p>
+
+	<svg class="bike" id="bike" width=400 height=400>
+
+		<!-- Rodas -->
+		<circle cx=100 cy=120 r=50 />
+		<circle cx=300 cy=120 r=50 />
+
+		<!-- Estrado -->
+		<line x1=100 y1=120 x2=180 y2=120 />
+		<line x1=100 y1=120 x2=150 y2=210 />
+		<line x1=180 y1=120 x2=140 y2=240 />
+		<line x1=150 y1=210 x2=270 y2=210 />
+		<line x1=180 y1=120 x2=270 y2=210 />
+		<line x1=300 y1=120 x2=260 y2=240 />
+
+
+		<!-- Guidão -->
+		<line x1=300 y1=240 x2=260 y2=240 />
+		<path d="M300 240 C 325,240 325,210 300,210" />
+
+		<!-- Banco -->
+		<line x1=120 y1=240 x2=160 y2=240 />
+
+
+		<!-- Pedais - Eixo -->
+		<circle cx=180 cy=120 r=10 />
+		<g id="pedais">
+
+			<!-- Pedais - Pedal 1 -->
+			<line id="haste-1" x1=180 y1=120 x2=180 y2=160 />
+			<line id="pedal_1" x1=170 y1=160 x2=190 y2=160 />
+
+
+			<!-- Pedais - Pedal 2 -->
+			<line x1=180 y1=120 x2=180 y2=80 />
+			<line id="pedal_2" x1=170 y1=80 x2=190 y2=80 />
+
+
+		</g>
+
+
+		<!-- Pernas -->
+		<!-- Valores zero são inseridos com JavaScript -->
+		<!-- Perna - Coxa -->
+		<line id="coxa_1" x1=140 y1=240 x2=0 y2=0 />
+		<line id="coxa_2" x1=140 y1=240 x2=0 y2=0 />
+
+		<!-- Perna - Canela -->
+		<line id="canela_1" x1=0 y1=0 x2=0 y2=0 />
+		<line id="canela_2" x1=0 y1=0 x2=0 y2=0 />
+
+
+	</svg>
+
+	<p>Abaixo estão as coordenadas do ponto de um dos joelhos (valor arredondado):</p>
+
+	<p id="testes2"></p>
+
+	<br>
+	<p>Segue abaixo alguns rascunhos</p>
+	<ul>
+		<li>Pontos do boneco e o cálculo para o tamanho das pernas:</li>
+		<img class="rascunhos" src="imagens/Pontos boneco.jpg" alt="Pontos do boneco">
+		<li>Tentando usar o ângulo para calcular o movimento das pernas:</li>
+		<img class="rascunhos" src="imagens/Calcular perna ângulo.jpg" alt="Calcular perna pelo ângulo">
+		<li>Tentando usar a intersecção entre os círculos (possível posições dos joelhos e dos pés) para calcular os joelhos das pernas:</li>
+		<img class="rascunhos" src="imagens/Calcular joelho círculos.jpg" alt="Calcular joelho pela intersecção entre os círculos">
+		<li>Usando os pontos e vetores para calcular os joelhos das pernas:</li>
+		<img class="rascunhos" src="imagens/Calcular joelho vetores.jpg" alt="Calcular joelho com os pontos e vetores">
+	</ul>
+	
+	<br>
+
+	<div class="botoes-paginas">
+		<a href="parte_3.html">Parte 3</a>
+		<a href="parte_5.html">Parte 5</a>
+	</div>
+
+	<script>
+
+		setInterval(function () {
+			let novaHora = new Date();
+			// getHours trará a hora
+			// geMinutes trará os minutos
+			// getSeconds trará os segundos
+			let hora = novaHora.getHours();
+			let minuto = novaHora.getMinutes();
+			let segundo = novaHora.getSeconds();
+			// Chamamos a função zero para que ela retorne a concatenação
+			// com os minutos e segundos
+			minuto = zero(minuto);
+			segundo = zero(segundo);
+			// Com o textContent, iremos inserir as horas, minutos e segundos
+			// no nosso elemento HTML
+			document.getElementById('hora').textContent = hora + ':' + minuto + ':' + segundo;
+		}, 1000)
+
+
+		function zero(x) {
+			if (x < 10) {
+				x = '0' + x;
+			} return x;
+		}
+
+		var moveSlider = function (slider, direction) {
+			var value = slider.value;
+			var rectSVG = document.getElementById('rect-svg');
+			rectSVG.setAttributeNS(null, direction, value * 4);
+		}
+
+
+
+
+		var bike = document.getElementById("bike");
+		var retangulo_bike = bike.getBoundingClientRect();
+
+		var pedais = document.getElementById("pedais");
+		var pedal_1 = document.getElementById("pedal_1");
+		var pedal_2 = document.getElementById("pedal_2");
+		var canela_1 = document.getElementById("canela_1");
+		var coxa_1 = document.getElementById("coxa_1");
+		var canela_2 = document.getElementById("canela_2");
+		var coxa_2 = document.getElementById("coxa_2");
+
+		var ponto_c = 0;
+		var vetor_cd = 0;
+		var vetor_bc = 0;
+		var modulo_cd = 0;
+		var modulo_bc = 0;
+		var x_pe_1 = 0;
+		var y_pe_1 = 0;
+		var ponto_d = 0;
+
+
+		var i = 0;
+
+		function rotate() {
+
+
+			pedais.setAttribute("transform", "rotate(" + (i--) + ",180,120)");
+			pedal_1.setAttribute("transform", "rotate(" + (-i) + ",180,160)");
+			pedal_2.setAttribute("transform", "rotate(" + (-i) + ",180,80)");
+
+
+			var retangulo = pedal_1.getBoundingClientRect();
+			var retangulo2 = bike.getBoundingClientRect();
+
+			x_pe = (Math.round(retangulo.x - Math.round(retangulo2.x) + 10));
+			y_pe = (400 + Math.round(retangulo2.y) - Math.round(retangulo.y));
+			/*
+						ponto_c = [(140 + x_pe_1)/2,(240 + y_pe_1)/2];
+			
+						vetor_bc = [(140 - x_pe_1)/2,(240 - y_pe_1)/2];
+			
+						vetor_cd = [vetor_bc[1],-vetor_bc[0]];
+			
+						modulo_bc = Math.pow(vetor_bc[0],2) + Math.pow(vetor_bc[1],2);
+			
+						modulo_cd = Math.pow(8100 - modulo_bc,(1/2));
+			
+						modulo_bc = Math.pow(modulo_bc,(1/2));
+			
+						modulo_cd = (modulo_cd/modulo_bc)
+			
+						ponto_d = [ponto_c[0]+(vetor_cd[0]*modulo_cd),ponto_c[1]+(vetor_cd[1]*modulo_cd)];
+			
+						var modulo_canela = Math.pow(140-ponto_d[0],2) + Math.pow(240-ponto_d[1],2);
+						modulo_canela = Math.pow(modulo_canela,(1/2));
+			*/
+
+			ponto_d = ponto_joelho([x_pe, y_pe])
+			//document.getElementById('testes').textContent = "x: " + Math.round(modulo_cd) + " y: " + (Math.round(modulo_canela));
+			document.getElementById('testes2').textContent = "Ponto do joelho: (x, y) = (" + Math.round(ponto_d[0]) + ", " + Math.round(ponto_d[1]) + ").";
+			//document.getElementById('testes2').textContent = "x: " + Math.round(window.scrollX) + " y: " + ( Math.round(window.scrollY));
+
+			canela_1.setAttribute("x1", x_pe);
+			canela_1.setAttribute("y1", y_pe);
+			canela_1.setAttribute("x2", ponto_d[0]);
+			canela_1.setAttribute("y2", ponto_d[1]);
+			coxa_1.setAttribute("x2", ponto_d[0]);
+			coxa_1.setAttribute("y2", ponto_d[1]);
+
+			var retangulo = pedal_2.getBoundingClientRect();
+
+			x_pe = (Math.round(retangulo.x - Math.round(retangulo2.x) + 10));
+			y_pe = (400 + Math.round(retangulo2.y) - Math.round(retangulo.y));
+
+			ponto_d = ponto_joelho([x_pe, y_pe])
+
+			canela_2.setAttribute("x1", x_pe);
+			canela_2.setAttribute("y1", y_pe);
+			canela_2.setAttribute("x2", ponto_d[0]);
+			canela_2.setAttribute("y2", ponto_d[1]);
+			coxa_2.setAttribute("x2", ponto_d[0]);
+			coxa_2.setAttribute("y2", ponto_d[1]);
+
+
+
+			setTimeout(rotate, 1);
+
+		}
+
+		function ponto_joelho(pe) {
+
+			ponto_c = [(140 + pe[0]) / 2, (240 + pe[1]) / 2];
+
+			vetor_bc = [(140 - pe[0]) / 2, (240 - pe[1]) / 2];
+
+			vetor_cd = [vetor_bc[1], -vetor_bc[0]];
+
+			modulo_bc = Math.pow(vetor_bc[0], 2) + Math.pow(vetor_bc[1], 2);
+
+			modulo_cd = Math.pow(8100 - modulo_bc, (1 / 2));
+
+			modulo_bc = Math.pow(modulo_bc, (1 / 2));
+
+			modulo_cd = (modulo_cd / modulo_bc)
+
+			ponto_d = [ponto_c[0] + (vetor_cd[0] * modulo_cd), ponto_c[1] + (vetor_cd[1] * modulo_cd)];
+
+			return ponto_d;
+		}
+
+
+		rotate();
+
+	</script>
+
+</body>
+
+
+</html>

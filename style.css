@@ -1,0 +1,118 @@
+@charset "UTF-8";
+/* Layout da Página */
+body {
+  background-color: #363636;
+  color: whitesmoke;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: justify;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+p, li {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+img {
+  background-color: white;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto;
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.rascunhos {
+  width: 100%;
+}
+
+#hora {
+  text-align: center;
+}
+
+/* Botões de Navegação*/
+.botoes-paginas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #4245F0;
+  padding: 10px 20px;
+  margin: 0.5em;
+}
+
+a:hover {
+  background-color: #37A0F8;
+}
+
+a:active {
+  background-color: #5B30D9;
+  text-decoration: underline;
+}
+
+/* SVG */
+svg {
+  background-color: white;
+  border-radius: 10px;
+  align-items: center;
+  margin: auto;
+  display: block;
+}
+
+.bike {
+  transform: rotateX(180deg);
+}
+
+.bike line, .bike path, .bike circle {
+  stroke-width: 4px;
+  stroke: #262626;
+}
+.bike circle, .bike path {
+  fill: none;
+}
+
+#ceu {
+  fill: #59E2F0;
+}
+
+#grama {
+  fill: #41F065;
+}
+
+#estrada {
+  fill: lightgray;
+}
+
+#sol {
+  stroke: #F09554;
+  stroke-width: 2;
+  fill: #F0DF35;
+}
+
+#flor line {
+  stroke: #1E702F;
+}
+#flor circle {
+  stroke-width: 0;
+  fill: #F09554;
+}
+#flor #petalas circle {
+  fill: #F0DF35;
+}
+
+#metal_bicicleta line, #metal_bicicleta path {
+  stroke: #F01D39;
+}
+
+/*# sourceMappingURL=style.css.map */
