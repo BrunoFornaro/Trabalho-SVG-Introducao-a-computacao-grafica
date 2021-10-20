@@ -42,6 +42,20 @@ img {
   text-align: center;
 }
 
+a {
+  color: white;
+  font-size: 20px;
+}
+
+a:hover {
+  color: gray;
+}
+
+a:active {
+  color: white;
+}
+
+
 /* Botões de Navegação*/
 .botoes-paginas  {
   display: flex;
@@ -49,24 +63,27 @@ img {
   align-items: center;
 }
 
-a {
-  color: white;
-  font-size: 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  background-color: #4245F0;
-  padding: 10px 20px;
-  margin: 0.5em;
+.botoes-paginas {
+  a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #4245F0;
+    padding: 10px 20px;
+    margin: 0.5em;
+  }
+
+  a:hover {
+    background-color: #37A0F8;
+  }
+
+  a:active {
+    background-color: #5B30D9;
+    text-decoration: underline;
+  }
 }
 
-a:hover {
-  background-color: #37A0F8;
-}
-
-a:active {
-  background-color: #5B30D9;
-  text-decoration: underline;
-}
 
 /* SVG */
 svg {

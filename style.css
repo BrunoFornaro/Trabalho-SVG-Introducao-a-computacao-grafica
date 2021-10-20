@@ -35,6 +35,19 @@ img {
   text-align: center;
 }
 
+a {
+  color: white;
+  font-size: 20px;
+}
+
+a:hover {
+  color: gray;
+}
+
+a:active {
+  color: white;
+}
+
 /* Botões de Navegação*/
 .botoes-paginas {
   display: flex;
@@ -42,7 +55,7 @@ img {
   align-items: center;
 }
 
-a {
+.botoes-paginas a {
   color: white;
   font-size: 20px;
   text-decoration: none;
@@ -51,12 +64,10 @@ a {
   padding: 10px 20px;
   margin: 0.5em;
 }
-
-a:hover {
+.botoes-paginas a:hover {
   background-color: #37A0F8;
 }
-
-a:active {
+.botoes-paginas a:active {
   background-color: #5B30D9;
   text-decoration: underline;
 }
