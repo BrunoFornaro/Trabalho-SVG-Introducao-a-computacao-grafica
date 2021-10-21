@@ -1,13 +1,24 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Tipo do documento -->
 <html lang="pt-br">
+<!-- Idioma do documento -->
+
+
+<!-- Pré definições do documento -->
 
 <head>
-	<meta charset=UTF-8">
+	<!-- Codificação da página -->
+	<meta charset="UTF-8">
+
 	<!-- CSS -->
 	<link rel="stylesheet" href="style.css" />
 </head>
 
+
+<!-- Corpo do documento -->
+
 <body>
+
+	<!-- Botões de navegação do topo da página -->
 	<div class="botoes-paginas">
 		<a href="index.html">Parte 1</a>
 		<a href="parte_2.html">Parte 2</a>
@@ -19,20 +30,35 @@
 	</div>
 
 
+	<!-- Comentários antes do SVG -->
 	<h3>Primeira animação</h3>
 	<p>Vamos dizer que a parte fácil já foi (por mais que não tenha sido fácil de verdade).</p>
-	<p>Agora que já foi feita a primeira imagem estática, chegou a hora de começar a tentar animá-la. Nesse momento, me deparei com dois caminhos que eu poderia seguir, considerando que o trabalho está sendo feito no HTML "raíz":</p>
+	<p>Agora que já foi feita a primeira imagem estática, chegou a hora de começar a tentar animá-la. Nesse momento, me
+		deparei com dois caminhos que eu poderia seguir, considerando que o trabalho está sendo feito no HTML "raíz":
+	</p>
 	<ul>
 		<li>Utilizar o CSS para animar a imagem</li>
 		<li>Animar a o SVG com JavaScript</li>
 	</ul>
-	<p>Eu nunca tinha tentado animar uma imagem SVG de nenhuma das duas maneiras, mas enquanto pesquisei, vi que para o que eu queria o JavaScript poderia ser uma melhor solução. Pelo JS eu teria mais liberdade para escolher quantos quadros por segundo a animação teria e alterar isso fácilmente, assim como a velocidade de cada movimento individualmente. Além disso, pelo que eu notei no CSS seria necessário fazer boa parte das transformações na mão uma a uma, sem aproveitar muito código e com pouca liberdade para deixar os cálculos para a máquina. Já no JS, eu poderia fazer funções e um código que calcularia as transformações de acordo com o passar do tempo.</p>
-	<p>Eu já afirmei acima que é possível, mas o primeiro passo para que eu visse se era possivel fazer o que eu queria com o JS no HTML era ver se eu tinha como implementar uma função que reconhecesse o passar do tempo e que houvesse alguma forma de manipular os atributos dos elementos HMTL e SVG pelo JS.</p>
-	<p>Para essa primeira etapa, depois de algum tempo pesquisando consegui encontar exemplos que implementavam um relógio como o a seguir:</p>
+	<p>Eu nunca tinha tentado animar uma imagem SVG de nenhuma das duas maneiras, mas enquanto pesquisei, vi que para o
+		que eu queria o JavaScript poderia ser uma melhor solução. Pelo JS eu teria mais liberdade para escolher quantos
+		quadros por segundo a animação teria e alterar isso facilmente, assim como a velocidade de cada movimento
+		individualmente. Além disso, pelo que eu notei no CSS seria necessário fazer boa parte das transformações na mão
+		uma a uma, sem aproveitar muito código e com pouca liberdade para deixar os cálculos para a máquina. Já no JS,
+		eu poderia fazer funções e um código que calcularia as transformações de acordo com o passar do tempo.</p>
+	<p>Eu já afirmei acima que é possível, mas o primeiro passo para que eu visse se era possível fazer o que eu queria
+		com o JS no HTML era ver se eu tinha como implementar uma função que reconhecesse o passar do tempo e que
+		houvesse alguma forma de manipular os atributos dos elementos HMTL e SVG pelo JS.</p>
+	<p>Para essa primeira etapa, depois de algum tempo pesquisando consegui encontrar exemplos que implementavam um
+		relógio como o a seguir:</p>
 	<p id="hora"></p>
-	<p>Com isso, já pude analisar o código e ver que tem como identificar as horas, minutos e segundos atuais pelo JS. Após isso, também descobri outras formas de lidar com o tempo que seriam mais úteis.</p>
-	<p>Depois de muito esforço, conseguir fazer o primeiro movimento no desenho conforme eu desejava. Na imagem abaixo está a bicicleta do etapa anterior, agora com uma parte dos pedais rotacionando:</p>
+	<p>Com isso, já pude analisar o código e ver que tem como identificar as horas, minutos e segundos atuais pelo JS.
+		Após isso, também descobri outras formas de lidar com o tempo que seriam mais úteis.</p>
+	<p>Depois de muito esforço, consegui fazer o primeiro movimento no desenho conforme eu desejava. Na imagem abaixo
+		está a bicicleta do etapa anterior, agora com uma parte dos pedais rotacionando:</p>
 
+
+	<!-- Desenho SVG -->
 	<svg class="bike" id="bike" width=400 height=400 style="border:2px solid gray">
 
 		<!-- Rodas -->
@@ -47,14 +73,12 @@
 		<line x1=180 y1=120 x2=270 y2=210 />
 		<line x1=300 y1=120 x2=260 y2=240 />
 
-
 		<!-- Guidão -->
 		<line x1=300 y1=240 x2=260 y2=240 />
 		<path d="M300 240 C 325,240 325,210 300,210" />
 
 		<!-- Banco -->
 		<line x1=120 y1=240 x2=160 y2=240 />
-
 
 		<!-- Pedais - Eixo -->
 		<circle cx=180 cy=120 r=10 />
@@ -68,67 +92,58 @@
 		<line x1=170 y1=80 x2=190 y2=80 />
 	</svg>
 
-	
-	<script>
 
-		setInterval(function () {
-			let novaHora = new Date();
-			// getHours trará a hora
-			// geMinutes trará os minutos
-			// getSeconds trará os segundos
-			let hora = novaHora.getHours();
-			let minuto = novaHora.getMinutes();
-			let segundo = novaHora.getSeconds();
-			// Chamamos a função zero para que ela retorne a concatenação
-			// com os minutos e segundos
-			minuto = zero(minuto);
-			segundo = zero(segundo);
-			// Com o textContent, iremos inserir as horas, minutos e segundos
-			// no nosso elemento HTML
-			document.getElementById('hora').textContent = hora + ':' + minuto + ':' + segundo;
-		}, 1000)
+	<!-- Comentários pós SVG -->
+	<p>Foi aplicada uma rotação no elemento da linha nessa parte do pedal da bicicleta, incrementando o ângulo de
+		rotação conforme passa o tempo, com centro da rotação no ponto central do eixo do pedal.</p>
 
 
-		function zero(x) {
-			if (x < 10) {
-				x = '0' + x;
-			} return x;
-		}
-
-		var moveSlider = function (slider, direction) {
-			var value = slider.value;
-			var rectSVG = document.getElementById('rect-svg');
-			rectSVG.setAttributeNS(null, direction, value * 4);
-		}
-
-
-
-
-		var skyline = document.getElementById("haste-1");
-
-		var angle = 0,
-			finalAngle = angle + 100;
-
-		var i = 0;
-
-		function rotate() {
-			skyline.setAttribute("transform", "rotate(" + (i++) + ",180,120)");
-			setTimeout(rotate, 10);
-		}
-
-
-		rotate();
-
-	</script>
-
-	<p>Foi aplicada uma rotação no elemento da linha nessa parte do pedal da bicicleta, incrementando o ângulo de rotação conforme passa o tempo, com centro da rotação no ponto central do eixo do pedal.</p>
-
+	<!-- Botões de navegação do final da página -->
 	<br>
-
 	<div class="botoes-paginas">
 		<a href="parte_1.html">Parte 1</a>
 		<a href="parte_3.html">Parte 2</a>
 	</div>
+
+
+	<!-- JavaScript -->
+	<script>
+
+		/* Função para criar o relógio */
+		setInterval(function () {
+			let novaHora = new Date();
+			let hora = novaHora.getHours(); // Busca a hora atual e armazena
+			let minuto = novaHora.getMinutes(); // Busca o minuto atual e armazena
+			let segundo = novaHora.getSeconds(); // Busca o segundo atual e armazena
+			minuto = zero(minuto); // Chamamos a função zeros para o número dos minutos e segundos sempre ter dois dígitos (inclui o zero à esquerda)
+			segundo = zero(segundo);
+			document.getElementById('hora').textContent = hora + ':' + minuto + ':' + segundo; // Escreve o relógio no HTML
+		}, 1000)
+
+		/* Função para concatenar zero */
+		function zero(x) {
+			if (x < 10) { // Se o valor for menor que 10 
+				x = '0' + x; // Concatena o zero à esquerda
+			} return x; // Retorna o valor (string) com o padrão de dois dígitos
+		}
+
+		/* Declaraçao das variáveis */
+		// Variáveis com os elementos SVG e HTML, pelo id
+		var haste_1 = document.getElementById("haste-1"); // Variável da haste-1 do SVG
+
+		// Variáveis para a animação
+		var contador = 0; // Contador para incrementar a transformação (movimento rígido)
+
+		/* Função para a animação ser atualizada */
+		function animar() {
+			haste_1.setAttribute("transform", "rotate(" + (contador++) + ",180,120)"); // Incrementa o contador e implementa a rotação na haste-1
+			setTimeout(animar, 10); // Define o timeout para a animação atualizar a cada 10 milisegundos
+		}
+
+		animar(); // Chama a função para animar a imagem
+
+	</script>
+
 </body>
 
 

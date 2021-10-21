@@ -1,15 +1,24 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Tipo do documento -->
 <html lang="pt-br">
+<!-- Idioma do documento -->
+
+
+<!-- Pré definições do documento -->
 
 <head>
-	<meta charset=UTF-8">
+	<!-- Codificação da página -->
+	<meta charset="UTF-8">
+
 	<!-- CSS -->
 	<link rel="stylesheet" href="style.css" />
-	<script src="script.js" defer></script>
 </head>
+
+
+<!-- Corpo do documento -->
 
 <body>
 
+	<!-- Botões de navegação do topo da página -->
 	<div class="botoes-paginas">
 		<a href="index.html">Parte 1</a>
 		<a href="parte_2.html">Parte 2</a>
@@ -21,13 +30,21 @@
 	</div>
 
 
-	<h3>Desenhando a bicicleta</h3> 
-	<p>Como o objetivo é terminar o desenho com uma pessoa pedalando em uma bicicleta, então vamos começar desenhando a bicicleta em si, já que a posição do personagem vai depender do desenho da bicicleta.</p>
-	<p>Vai ser fácil notar que minhas hábilidades artísticas não vão muito além de "bonecos palito", então me inspirei fortemente no desenho de bicicleta a seguir para conseguir produzir o SVG:</p>
+	<!-- Comentários antes do SVG -->
+	<h3>Desenhando a bicicleta</h3>
+	<p>Como o objetivo é terminar o desenho com uma pessoa pedalando em uma bicicleta, então vamos começar desenhando a
+		bicicleta em si, já que a posição do personagem vai depender do desenho da bicicleta.</p>
+	<p>Vai ser fácil notar que minhas habilidades artísticas não vão muito além de "bonecos palito", então me inspirei
+		fortemente no desenho de bicicleta a seguir para conseguir produzir o SVG:</p>
 	<img src="imagens/bicicleta_inspiracao.png" alt="Desenho de bicicleta usado como base">
-	<p>Utilizei circulos, linhas e uma Curva de Bézier (no guidão) para fazer o desenho, tudo escrito diretamente em código SVG, sem utilizar uma ferramenta gráfica como o InkScape por exemplo. Abaixo está o primeiro resultado:</p>
+	<p>Utilizei círculos, linhas e uma Curva de Bézier (no guidão) para fazer o desenho, tudo escrito diretamente em
+		código SVG, sem utilizar uma ferramenta gráfica como o InkScape por exemplo. Abaixo está o primeiro resultado:
+	</p>
 
-	<svg class="bike" width=400 height=400 style="border:2px solid gray"><!-- https://www.ultracoloringpages.com/pt/p/bicicleta-desenho-para-colorir/f2f638f4c4646947e50cbd2223490a7d -->
+
+	<!-- Desenho SVG -->
+	<svg class="bike" width=400 height=400 style="border:2px solid gray">
+		<!-- https://www.ultracoloringpages.com/pt/p/bicicleta-desenho-para-colorir/f2f638f4c4646947e50cbd2223490a7d -->
 
 		<!-- Rodas -->
 		<circle cx=100 cy=120 r=50 />
@@ -41,14 +58,12 @@
 		<line x1=180 y1=120 x2=270 y2=210 />
 		<line x1=300 y1=120 x2=260 y2=240 />
 
-
 		<!-- Guidão -->
 		<line x1=300 y1=240 x2=260 y2=240 />
 		<path d="M300 240 C 325,240 325,210 300,210" />
 
 		<!-- Banco -->
 		<line x1=120 y1=240 x2=160 y2=240 />
-
 
 		<!-- Pedais - Eixo -->
 		<circle cx=180 cy=120 r=10 />
@@ -62,13 +77,24 @@
 		<line x1=170 y1=80 x2=190 y2=80 />
 	</svg>
 
-	<p>Mesmo que não seja perceptível, e justamente por isso, é importante ressaltar que aqui já foi feita a primeira transformação, o primeiro movimento rígido, na imagem: foi feita uma reflexão para que o eixo y tenha sentido positivo para cima, colocando a origem do SVG no canto inferior esquedo. Isso foi de grande importância para fazer o desenho e continuar desenvolvendo ele com mais facilidade.</p>
+
+	<!-- Comentários pós SVG -->
+	<p>Mesmo que não seja perceptível, e justamente por isso, é importante ressaltar que aqui já foi feita a primeira
+		transformação, o primeiro movimento rígido, na imagem: foi feita uma reflexão para que o eixo y tenha sentido
+		positivo para cima, colocando a origem do SVG no canto inferior esquerdo. Isso foi de grande importância para
+		fazer o desenho e continuar desenvolvendo ele com mais facilidade.</p>
+
+
+	<!-- Rascunhos -->
 	<br>
-	<p>Ao longo do trabalho, foi útil e em algumas partes necessário fazer rascunhos a cada etapa, então vão ser anexados alguns rasconhos no final de cada etapa, quando houverem. Segue abaixo os rascunhos com o esboço da bicicleta, o boneco e os pontos da bibicleta:</p>
+	<p>Ao longo do trabalho, foi útil (em algumas partes necessário) fazer rascunhos a cada etapa, então vão ser
+		anexados alguns rascunhos no final de cada etapa, quando houverem. Segue abaixo os rascunhos com o esboço da
+		bicicleta, o boneco e os pontos da bicicleta:</p>
 	<img class="rascunhos" src="imagens/Pontos bicicleta.jpg" alt="Pontos da bicicleta">
 
-	<br>
 
+	<!-- Botões de navegação do final da página -->
+	<br>
 	<div class="botoes-paginas">
 		<a href="parte_2.html">Parte 2</a>
 	</div>
